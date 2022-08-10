@@ -110,6 +110,7 @@
               autocomplete="off"
               maxlength="500"
               autofocus
+              onclick=record()
             />
             <input
               id="task-description-input"
@@ -117,6 +118,7 @@
               name="description"
               placeholder="Description"
               autocomplete="off"
+              onclick=recordd()
             />
           </div>
           <div class="extra-fields">
@@ -401,6 +403,34 @@
           <p class="current-date-title"></p>
         </div>
       </div>
+
+      
     </main>
+
+    <script>
+      function record(){
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+
+        recognition.onresult = function(event){
+          console.log(event);
+          document.getElementById('task-name-input').value = event.results[0][0].transcript;
+        }
+
+        recognition.start();
+      }
+
+      function recordd(){
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+
+        recognition.onresult = function(event){
+          console.log(event);
+          document.getElementById('task-description-input').value = event.results[0][0].transcript;
+        }
+
+        recognition.start();
+      }
+    </script>
   </body>
 </html>
